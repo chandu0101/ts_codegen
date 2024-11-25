@@ -2,6 +2,8 @@
 
 check https://github.com/chandu0101/tstore cli
 
+mimic dstore codegen
+
 https://github.com/HearTao/ts-creator
 
 https://github.com/itsdouges/awesome-typescript-ecosystem
