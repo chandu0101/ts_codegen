@@ -1,3 +1,7 @@
+### tstore cli 
+
+check https://github.com/chandu0101/tstore cli
+
 https://github.com/HearTao/ts-creator
 
 https://github.com/itsdouges/awesome-typescript-ecosystem
