@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Backend Test",
-            "program": "${workspaceRoot}/build/index.js",
+            "program": "${workspaceRoot}/node_modules/typescript/bin/tsc",
             "cwd": "${workspaceRoot}",
             "args": [
                 // //----
