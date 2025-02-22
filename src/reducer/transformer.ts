@@ -1,11 +1,12 @@
 import ts from "typescript";
 import { AstUtils } from "../ast_utils";
 import { FileUtils } from "../file_utils";
+import { log } from "console";
 
 
 const reducerTransformer: ts.TransformerFactory<ts.Node> = context => {
     const visit: ts.Visitor = node => {
-        
+
         if (ts.isClassDeclaration(node)) {
             console.log("class found and processing");
             // return createReducerFunction(node);
@@ -19,9 +20,8 @@ const reducerTransformer: ts.TransformerFactory<ts.Node> = context => {
             return ts.factory.createStringLiteral('after');
         }
         return node;
-        
-        ts.visitEachChild(node, visit, context);
-        
+
+
     };
 
     return node => ts.visitEachChild(node, visit, context);
@@ -32,9 +32,11 @@ export function reducerTransformerFile(sourceFile: ts.SourceFile, ctx: ts.Transf
     const newSf = ts.transform(sourceFile, [reducerTransformer]).transformed[0];
     const printer = ts.createPrinter();
     const transformedContent = printer.printFile(newSf as ts.SourceFile)
+    console.log("printing file");
 
     // const outFile = ConfigUtils.getOutputPathForReducerSourceFile(file)
     // console.log("******* writing to out file : ", outFile);
     // console.log("outFile : ", outFile);
-    FileUtils.writeFileSync("./gen.ts", transformedContent);
+    FileUtils.writeFileSync("./gen.ts", "console.log()");
+
 };

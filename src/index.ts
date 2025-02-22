@@ -1,10 +1,10 @@
 import { dirname } from "path"
 
-console.log("HelloWorld1");
+console.log("HelloWorld");
 
 console.log("before");
 
-console.log("GRUHASTU DHARMANI PATISTANU");
+console.log("GRUHASTU DHARMANI PATISTANU GODAVARI GANGA");
 
 interface PState<T> { }
 

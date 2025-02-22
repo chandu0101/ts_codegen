@@ -1,5 +1,5 @@
 import { dirname, join } from "path"
-import { existsSync, mkdirSync, writeFileSync, readFileSync, promises as fsp, lstatSync } from "fs"
+import { existsSync, mkdirSync, writeFileSync, readFileSync, promises as fsp, lstatSync, writeFile } from "fs"
 
 
 
@@ -17,6 +17,17 @@ export class FileUtils {
         }
         writeFileSync(path, content)
     }
+
+    static async writeFileAsync(path: string, content: string) {
+        const dir = dirname(path)
+        if (!existsSync(dir)) {
+            mkdirSync(dir, { recursive: true })
+        }
+        writeFile(path, content, () => {
+            console.log("wrote file");
+        })
+    }
+
 
     static readFileSync(path: string) {
         return readFileSync(path, { encoding: "utf-8" })

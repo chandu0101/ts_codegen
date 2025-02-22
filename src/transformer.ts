@@ -12,32 +12,32 @@ export default function (program: ts.Program, pluginConfig: PluginConfig, { ts: 
         return (sourceFile: ts.SourceFile) => {
             function visit(node: ts.Node): ts.Node {
                 if (tsInstance.isClassDeclaration(node) && AstUtils.isReducerClass(node)) {
-                    // console.log("class dec");
-                    // console.log(node.heritageClauses?.values.name);
+                    console.log("class dec");
+                    console.log(node.heritageClauses?.values.name);
                     // console.log(AstUtils.getInterfaces(node));
                     // FileUtils.writeFileSync("./src/gen.ts", "console.log('hello')");
                     reducerTransformerFile(sourceFile, ctx);
                     return node;
                 }
-                // if (tsInstance.isStringLiteral(node) && node.text === 'before') {
-                //     processAsync();
-                //     return factory.createStringLiteral('after');
-                // }
+                if (tsInstance.isStringLiteral(node) && node.text === 'before') {
+                    return factory.createStringLiteral('after');
+                }
                 return tsInstance.visitEachChild(node, visit, ctx);
             }
 
-            // console.log("Hello Transformers2");
+            console.log("Hello Transformers2");
+            helloAsync("async param");
+
             return tsInstance.visitNode(sourceFile, visit);
         };
     };
 }
 
-async function hello() {
-    console.log("async here");
-}
+async function helloAsync(params: string) {
+    console.log("Async dude");
 
-async function processAsync() {
-    hello();
-    console.log("dude");
-}
+    console.log(params);
+    await FileUtils.writeFileAsync("./gen2.ts", "console.log('2')");
+    console.log("await working");
 
+}
